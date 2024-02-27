@@ -1,0 +1,12 @@
+
+/*formatting for container div*/
+.container {
+    background-color: red;
+}
+
+/* formatting for heading*/
+#heading {
+    margin-top: 20px;
+    margin-left: 20px;
+    text-align: center;
+}
