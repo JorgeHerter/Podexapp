@@ -10,15 +10,32 @@
     
 </head>
     <body>
+        
+        <button id="show-modal">Show Modal</button>
+        <div id="modal-container">
+            <div class="modal">
+                <button class="modal-close">x-icon</button>
+                <h1>Modal Title</h1>
+                <p>Modal Text</p>
+            </div>
+        </div>
+        
         <div class="container">
-            <h1 id="heading">Simple JS Pokemon App</h1>
-            
-        <li class="Pokemon-list"></li>
-        <ul id="pokemonList1"></ul>
-        <button id="button1">On Click</button>
+            <form id="register-form">
+                
+                <div class="input-wrapper">
+                    <label for="email">E-mail</label>
+                    <input id="email">
+                </div>
+                
+                <div class="input-wrapper">
+                    <label for="password">Password</label>
+                    <input id="password" type="password">
+                </div>
+            </form>
+        </div>
         <script src="js/promise-polyfill.js"></script>
         <script src="js/fetch-polyfill.js"></script>
         <script src="js/scripts.js"></script>
-        </div>
     </body>
 </html>
