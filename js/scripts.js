@@ -55,9 +55,10 @@ var pokemonRepository = (function () {
 function addListItem(pokemon) {
     var pokemonList = document.querySelector('.pokemon-list');
     var listItem = document.createElement('li');
+    listItem.classList.add('list-group-item'); // Bootstrap list-group-item class
     var button = document.createElement('button');
     button.innerText = pokemon.name;
-    button.classList.add('pokemon-button');
+    button.classList.add('btn', 'btn-primary', 'pokemon-button'); // Bootstrap button classes
     listItem.appendChild(button);
     pokemonList.appendChild(listItem);
     button.addEventListener('click', function() {
@@ -72,56 +73,32 @@ function showDetails(pokemon) {
 }
 
 function showModal(pokemon) {
-    var modalContainer = document.querySelector('#modal-container');
-    modalContainer.innerHTML = ''; // Clear existing modal content
+    var modalTitle = document.querySelector('.modal-title');
+    var modalBody = document.querySelector('.modal-body');
+    var modalImage = document.querySelector('.modal-image');
 
-    var modal = document.createElement('div');
-    modal.classList.add('modal');
+    modalTitle.innerText = pokemon.name;
+    modalBody.innerText = 'Height: ' + pokemon.height;
+    modalImage.src = pokemon.imageUrl;
+    modalImage.alt = pokemon.name;
 
-    var closeButton = document.createElement('button');
-    closeButton.classList.add('modal-close');
-    closeButton.innerText = 'Close';
-    closeButton.addEventListener('click', hideModal);
-
-    var nameElement = document.createElement('h1');
-    nameElement.innerText = pokemon.name;
-
-    var heightElement = document.createElement('p');
-    heightElement.innerText = 'Height: ' + pokemon.height;
-
-    var imageElement = document.createElement('img');
-    imageElement.classList.add('modal-img');
-    imageElement.src = pokemon.imageUrl;
-    imageElement.alt = pokemon.name;
-
-    modal.appendChild(closeButton);
-    modal.appendChild(nameElement);
-    modal.appendChild(heightElement);
-    modal.appendChild(imageElement);
-    modalContainer.appendChild(modal);
-
-    modalContainer.classList.add('is-visible');
+    $('#exampleModal').modal('show'); // Bootstrap modal show method
 }
 
-function hideModal() {
-    var modalContainer = document.querySelector('#modal-container');
-    modalContainer.classList.remove('is-visible');
-}
-
-document.querySelector('#show-modal').addEventListener('click', function() {
-    showModal();
+document.querySelector('#modal-close').addEventListener('click', function() {
+    $('#exampleModal').modal('hide'); // Bootstrap modal hide method
 });
 
 document.querySelector('#modal-container').addEventListener('click', function(e) {
     var target = e.target;
     if (target === this) {
-        hideModal();
+        $('#exampleModal').modal('hide'); // Bootstrap modal hide method
     }
 });
 
 document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && document.querySelector('#modal-container').classList.contains('is-visible')) {
-        hideModal();
+    if (e.key === 'Escape' && $('#exampleModal').hasClass('show')) {
+        $('#exampleModal').modal('hide'); // Bootstrap modal hide method
     }
 });
 
